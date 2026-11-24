@@ -62,6 +62,14 @@ class ItemDaoTest {
 
     @Test
     @Throws(Exception::class)
+    fun daoGetItem_returnsItemFromDB() = runBlocking {
+        addOneItemToDb()
+        val item = itemDao.getItem(1)
+        assertEquals(item.first(), item1)
+    }
+
+    @Test
+    @Throws(Exception::class)
     fun daoUpdateItems_updatesItemsInDB() = runBlocking {
         addTwoItemsToDb()
         itemDao.update(Item(1, "Apples", 15.0, 25))
